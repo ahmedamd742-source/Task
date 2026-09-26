@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مؤقت المهام</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body { font-family: system-ui, sans-serif; text-align: center; padding: 20px; background: #f4f4f9; }
+    .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 350px; margin: auto; }
+    input, button { width: 100%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; }
+    button { background: #007bff; color: white; font-weight: bold; border: none; cursor: pointer; }
+    #timerDisplay { font-size: 2.5rem; font-weight: bold; color: #333; margin-top: 15px; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>مؤقت المهام ⏳</h2>
+    <input type="text" id="taskInput" placeholder="اسم المهمة (مثلاً: القراءة)">
+    <input type="number" id="timeInput" placeholder="الوقت بالدقائق">
+    <button onclick="startTimer()">بدء العد التنازلي</button>
+    
+    <h3 id="taskTitle"></h3>
+    <div id="timerDisplay">00:00</div>
+  </div>
+
+  <script>
+    let timerInterval;
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      const task = document.getElementById('taskInput').value || 'مهمة بدون عنوان';
+      let minutes = parseInt(document.getElementById('timeInput').value);
+
+      if (isNaN(minutes) || minutes <= 0) {
+        alert('يرجى إدخال عدد دقائق صحيح');
+        return;
+      }
+
+      let totalSeconds = minutes * 60;
+      document.getElementById('taskTitle').innerText = `المهمة الحالية: ${task}`;
+
+      timerInterval = setInterval(() => {
+        let mins = Math.floor(totalSeconds / 60);
+        let secs = totalSeconds % 60;
+
+        mins = mins < 10 ? '0' + mins : mins;
+        secs = secs < 10 ? '0' + secs : secs;
+
+        document.getElementById('timerDisplay').innerText = `${mins}:${secs}`;
+
+        if (totalSeconds <= 0) {
+          clearInterval(timerInterval);
+          alert(`🎉 انتهى وقت مهمة: ${task}`);
+        } else {
+          totalSeconds--;
+        }
+      }, 1000);
+    }
+
+    // تسجيل Service Worker ليعمل التطبيق كـ PWA
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+</body>
+</html>
