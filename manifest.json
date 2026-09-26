@@ -1,15 +1,23 @@
 {
   "name": "مؤقت المهام",
   "short_name": "المؤقت",
-  "start_url": "index.html",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#f4f4f9",
   "theme_color": "#007bff",
+  "orientation": "portrait",
   "icons": [
     {
-      "src" : https://cdn-icons-png.flaticon.com/512/850/850960.png)
+      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192' width='192' height='192'><rect width='192' height='192' rx='40' fill='%23007bff'/><circle cx='96' cy='104' r='55' fill='none' stroke='white' stroke-width='10'/><path d='M96 65 v40 h25' fill='none' stroke='white' stroke-width='9' stroke-linecap='round'/><path d='M80 32 h32 M96 32 v15' fill='none' stroke='white' stroke-width='8' stroke-linecap='round'/></svg>",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='512' height='512'><rect width='512' height='512' rx='100' fill='%23007bff'/><circle cx='256' cy='276' r='140' fill='none' stroke='white' stroke-width='24'/><path d='M256 176 v100 h65' fill='none' stroke='white' stroke-width='22' stroke-linecap='round'/><path d='M216 88 h80 M256 88 v48' fill='none' stroke='white' stroke-width='20' stroke-linecap='round'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
 }
